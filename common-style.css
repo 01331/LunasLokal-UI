@@ -1,0 +1,20 @@
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+nav {
+    background-color: gray;
+}
+
+.content {
+    max-width: 1190px;
+    margin: 0 auto;
+}
+
+.test-area {
+    background-color: red;
+}
