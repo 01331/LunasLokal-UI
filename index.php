@@ -10,6 +10,7 @@
 
     <link rel="icon" href="assets/LL-favicon.png" type="image/x-icon">
 
+    <script src="functions.js"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 <body>
@@ -31,54 +32,73 @@
     </nav>
 
     <div class="catalog">
-        <div class="filter">
-            <div class="crumb">
-                All Products
+        <div class="catalog-left">
+            <div class="filter">
+                <div class="filter-top">
+                    <div class="crumb">
+                        All Products
+                    </div>
+                    <div class="filter-toggles">
+                        <button class="std-button btn-ol-blue" onclick="toggleFilters()">toggle filters</button>
+                    </div>
+                </div>
+                <div class="filter-btm">
+                    filters
+
+                </div>
             </div>
-            <div class="filter-toggles">
-                filter
+
+            <div class="products">
+            <?php
+                include "_php/config.php"; // Include your database connection file
+
+                // Query to fetch data from both 'product_details' and 'store_accounts' using a JOIN statement
+                $sql = "SELECT pt.*, pa.pharm_name , pa.pharm_loc FROM prod_table pt
+                        LEFT JOIN pharm_accounts pa ON pt.pharm_id = pa.pharm_id";
+                $result = $link->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // Fetch and store all results in an array
+                    $combinedResults = [];
+                    while ($row = $result->fetch_assoc()) {
+                        $combinedResults[] = $row;
+                    }
+
+                    // Shuffle the array to randomize the order
+                    shuffle($combinedResults);
+
+                    foreach ($combinedResults as $row) {
+                        echo "<div class='card' onclick='showRightDiv(" . $row["prod_id"] .", " .$row["pharm_id"] .")'>
+                            <div class='card-image'>
+                                <img src='assets/Black Aesthetic Night Songs Insomnia Playlist Cover.png' alt='test pic'>
+                            </div>
+                            <div class='card-text'>
+                                <div class='text-prodName'>
+                                    <h4 id='prodName'>" . $row['prod_name'] . "</h4>
+                                </div>
+                                <div class='text-pharm-loc'>
+                                    <p id='pharm'>" . $row["pharm_name"] . ",</p>
+                                    <p id='loc'>" . $row["pharm_loc"] . "</p>
+                                </div>
+                                <div class='text-price'>
+                                    <p id='price' class='std-tag'>Php " . $row["prod_price"] . "</p>
+                                </div>
+                            </div>
+                        </div>";
+                    }
+                } else {
+                    echo "No products found.";
+                }
+
+                // Close the database connection
+                $link->close();
+            ?> 
             </div>
         </div>
 
-        <div class="products">
+        <div class="catalog-right">
             
-            <div class="card">
-                <div class="card-image">
-                    <img src="assets/Black Aesthetic Night Songs Insomnia Playlist Cover.png" alt="test pic">
-                </div>
-                <div class="card-text">
-                    <div class="text-prodName">
-                        <h3 id="prodName">Product Name</h3>
-                    </div>
-                    <div class="text-pharm-loc">
-                        <p id="pharm">Pharmacy</p>
-                        <p id="loc">Location</p>
-                    </div>
-                    <div class="text-price">
-                        <p id="price">Php 00.00</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <script>
-            // Select the products container
-            const productsContainer = document.querySelector('.products');
-    
-            // Select the card element to duplicate
-            const cardToDuplicate = document.querySelector('.products .card');
-    
-            // Duplicate the card content 5 times
-            for (let i = 0; i < 8; i++) {
-                // Create a clone of the card element
-                const clonedCard = cardToDuplicate.cloneNode(true);
-    
-                // Append the cloned card to the products container
-                productsContainer.appendChild(clonedCard);
-            }
-        </script>
-
+         </div>
     </div>
 </body>
 </html>

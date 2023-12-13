@@ -1,3 +1,238 @@
 body {
+    width: 100vw;
     background-color: #e6e6e6;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10pt;
+    overflow-x: hidden;
+}
+
+.catalog {
+  width: 97%;
+  padding-left: 2pt;
+  max-width: 1450px;
+  margin: 60pt 0 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 7pt;
+}
+
+.catalog-left {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 7pt;
+  margin: 0;
+  padding: 0;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 10pt 10pt 0 10pt;
+  border-radius: 6px;
+}
+
+.filter-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10pt;
+}
+
+.filter-btm {
+  display: none;
+  padding: 10pt 0;
+  border-top: solid #e6e6e6 0.5px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-content: center;
+  align-items: start;
+  gap: 5pt;
+}
+
+.card {
+  border-radius: 6px;
+  background-color: #fff;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card .card-image {
+  height: 150pt;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+}
+
+.card .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card .card-text {
+  padding: 5pt 5pt 8pt 5pt;
+  display: flex;
+  flex-direction: column;
+  gap: 1pt;
+}
+
+.text-pharm-loc {
+  display: flex;
+  flex-direction: column;
+  gap: 2pt;
+}
+
+#prodName {
+  height: 40px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Number of lines to display */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#pharm, #loc, #price {
+  font-size: 9pt;
+}
+
+.text-price {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  padding-top: 2pt;
+}
+
+#price {
+  font-weight: 600;
+}
+
+#price.std-tag {
+  display: inline;
+  background-image: linear-gradient(90deg, #29abe2, #0d7bc0);
+  color: #fff;
+}
+
+.catalog-right {
+  overflow: hidden;
+  overflow-y: auto;
+  height: 85vh;
+  display: none;
+  border-radius: 6pt;
+  scrollbar-width: none; /* Hide scrollbar */
+  position: relative;
+}
+
+.catalog-right::-webkit-scrollbar {
+  width: 0; /* Hide scrollbar */
+  display: none; /* Hide scrollbar */
+}
+
+.visible {
+  display: block;
+}
+
+.visible-grid {
+  display: flex;
+}
+
+.selected {
+    width: 320pt;
+    height: auto;
+    background-color: #fff;
+    border-radius: 6pt;
+    overflow: hidden;
+    display: block;
+}
+
+.selected-prod {
+  border-bottom: solid 1pt #e6e6e6;
+  padding-bottom: 10pt;
+}
+
+.selected-prod .selected-image {
+  height: 320pt;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+}
+
+.selected-prod .selected-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.selected-prod .selected-text {
+  padding: 5pt;
+  display: flex;
+  flex-direction: column;
+  gap: 7pt;
+}
+#genericName {
+  width: 100%;
+  border: solid 1px #000;
+  padding: 3pt;
+  box-sizing: border-box;
+  font-style: oblique;
+}
+
+.selected-prod .selected-text #prodName {
+  padding: 3pt;
+  box-sizing: border-box;
+}
+
+.selected-prod .selected-text #price {
+  font-size: large;
+  display: inline;
+  background-image: linear-gradient(90deg, #29abe2, #0d7bc0);
+  color: #fff;
+}
+
+.text-tags {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 3pt;
+}
+
+.selected-prod .selected-text .text-desc {
+  border-radius: 6pt;
+  padding: 7pt;
+  background-color: #ededed;
+}
+
+.selected-prod .selected-text .text-desc p {
+  font-size: 10pt;
+}
+
+.selected-pharm .selected-text {
+  padding: 10pt 10pt 15pt 10pt;
+}
+
+.selected-pharm .selected-text #pharm-loc {
+  font-style: oblique;
+}
+
+.selected-pharm .selected-text .selected-tags {
+  padding-top: 5pt;
+}
+
+.selected-pharm .selected-text .selected-tags p {
+  display: inline;
 }
